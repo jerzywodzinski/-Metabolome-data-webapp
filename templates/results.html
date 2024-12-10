@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+</head>
+<body>
+    <h1>Analysis Options</h1>
+    <form method="POST">
+        <h2>Generate Histogram</h2>
+        <select name="column">
+            {% for col in columns %}
+                <option value="{{ col }}">{{ col }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" name="action" value="histogram">Generate Histogram</button>
+
+        <h2>Dimensionality Reduction</h2>
+        <button type="submit" name="action" value="dim_reduction">Generate PaCMAP Plot</button>
+    </form>
+
+    <h2>Histograms</h2>
+    {% for hist in histograms %}
+        <img src="{{ hist }}" alt="Histogram">
+    {% endfor %}
+
+    <h2>Dimensionality Reduction</h2>
+    {% if reduction_plot %}
+        <img src="{{ reduction_plot }}" alt="PaCMAP Dimensionality Reduction">
+    {% endif %}
+</body>
+</html>
